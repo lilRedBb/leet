@@ -1,6 +1,7 @@
 package BinSearch;
 
 public class searchMatrix74 {
+    //在矩阵中找数字
     public boolean searchMatrix(int[][] matrix, int target) {
         if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
             return false;

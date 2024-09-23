@@ -1,6 +1,7 @@
 package tree;
 
 public class minABSdiffe530 {
+    //算法是用在bfs上的，所以不需要用abs()方法就能确保得到一个正数
 
     //返回一棵树上，两个相连node之间的差，这里面的最小的abs
     private int minDiff = Integer.MAX_VALUE;
@@ -25,4 +26,11 @@ public class minABSdiffe530 {
 
         inOrderTraversal(node.right);
     }
+    /**Processing node 1:
+
+     At this point, it does not go to node 2 yet. Instead, it processes node 1.
+     Since prev is null, it skips the comparison and sets prev = 1.
+     After processing node 1, the function calls inOrderTraversal(node.right). Since node.right of 1 is null, this call returns immediately.
+
+     Backtracking to node 2:**/
 }

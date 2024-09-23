@@ -2,6 +2,7 @@ package tree;
 
 
 public class TreeIsBalanced110 {
+    //平衡水需要左边和右边的最深处的差，最多为1，最外层检查了root的left和right， 接着要继续recursive来检查里面的所有小left right树
     public boolean isBalanced1(TreeNode root) {
         return checkHeight(root) != -1;
     }

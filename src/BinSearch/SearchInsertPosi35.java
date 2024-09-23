@@ -1,6 +1,7 @@
 package BinSearch;
 
 public class SearchInsertPosi35 {
+    //找得到就返回索引，找不到就返回插入的下标
     public int searchInsert(int[] nums, int target) {
         int left = 0;
         int right = nums.length - 1;
