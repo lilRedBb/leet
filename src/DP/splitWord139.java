@@ -1,8 +1,6 @@
 package DP;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class splitWord139 {
     /**
@@ -38,4 +36,27 @@ public class splitWord139 {
      dp array: [true, false, false, false, true, true]
      *
      * **/
+
+    //dp的复杂度是n方，用bfs复杂度少一点， 是n*k
+    public boolean wordBreakBFS(String s, List<String> wordDict) {
+        Set<String> wordSet = new HashSet<>(wordDict); // Store words in a HashSet for O(1) lookup
+        Queue<Integer> queue = new LinkedList<>();
+        boolean[] visited = new boolean[s.length() + 1]; // Tracks visited indices
+
+        queue.offer(0); // Start BFS from index 0
+
+        while (!queue.isEmpty()) {
+            int start = queue.poll(); // Dequeue an index
+            if (visited[start]) continue; // Skip if already visited
+            visited[start] = true;
+
+            for (int end = start + 1; end <= s.length(); end++) {
+                if (wordSet.contains(s.substring(start, end))) { // If substring is valid
+                    if (end == s.length()) return true; // If we reach the end, return true
+                    queue.offer(end); // Add next starting point to the queue
+                }
+            }
+        }
+        return false;
+    }
 }

@@ -1,7 +1,8 @@
 package tree;
 
 public class SynmatricTree101 {
-
+        //这个方法的时间复杂度是n，最后的&&有abort的作用
+    // &&的作用就是，在
 
         public boolean isSymmetric(TreeNode root) {
             if (root == null) return true;

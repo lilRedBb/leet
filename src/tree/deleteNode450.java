@@ -1,11 +1,13 @@
 package tree;
 
 public class deleteNode450 {
+    //时间复杂的为o h， h是树的高度，
     public TreeNode deleteNode(TreeNode root, int key) {
         if (root == null) {
             return null;
         }
 
+        //找到值以后，return过来的node会在下面这两个recur里安装给parent节点，达到一个delete子节点的作用
         if (key < root.value) {
             root.left = deleteNode(root.left, key);
         } else if (key > root.value) {

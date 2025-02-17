@@ -34,6 +34,7 @@ public class randomListCopy138 {
         }
 
         // Step 2: Assign random pointers for the copy nodes.
+        //curr.random.next is the copied node of B (i.e., B').
         curr = head;
         while (curr != null) {
             if (curr.random != null) {
@@ -43,6 +44,8 @@ public class randomListCopy138 {
         }
 
         // Step 3: Restore the original list, and extract the copy list.
+        //In the loop, we extract the copied node using copy = curr.next.
+        //Then, we append this copied node to the new list by setting copyCurr.next = copy
         curr = head;
         Node dummyHead = new Node(0);
         Node copy, copyCurr = dummyHead;

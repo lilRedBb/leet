@@ -10,6 +10,8 @@ public class stock121 {
             holdOne = Math.max(holdOne, -price); // Update holdOne with the best profit after buying today
             //当hold+price盈利更多的时候，你会选择在今天卖出
             //于是下面的（holdone,-price）这里，肯定不会选-price，因为今天是卖出了，没有以price价格买入
+            //假设列表是【12345】，那么最好的安排就是买1，hold到5的时候卖出，中间不动，所以中的的holdone变量一直保持为-1
+            //但是sellone是一直变化的，
         }
 
         return sellOne; // The maximum profit after one transaction

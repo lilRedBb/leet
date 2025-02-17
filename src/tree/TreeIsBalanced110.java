@@ -3,6 +3,9 @@ package tree;
 
 public class TreeIsBalanced110 {
     //平衡水需要左边和右边的最深处的差，最多为1，最外层检查了root的left和right， 接着要继续recursive来检查里面的所有小left right树
+    //方法1的时间复杂度只有n，要用这个，方法2不好，是n方
+    //区别在于方法1有中断机制而且是直接插到最下面从最下面的node往上计算，
+    // 方法二没有中断，而且是从上往下走的，所以每个node都要经历一次n的复杂度，所以不管怎么样他都会计算完。
     public boolean isBalanced1(TreeNode root) {
         return checkHeight(root) != -1;
     }

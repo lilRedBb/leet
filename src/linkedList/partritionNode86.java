@@ -11,7 +11,8 @@ public class partritionNode86 {
         ListNode afterHead = new ListNode(0);
         ListNode before = beforeHead;
         ListNode after = afterHead;
-
+//before he after = head的原因是，当第一次before和after和 head这个链表建联后，beforehead和afterhead就已经可以找到介入head了
+        //把 before after 设为head就是在不增加node的基础上，重塑head链表的链接关系，这样head链表就从本身上断成了两个链表
         while (head != null) {
             if (head.val < x) {
                 before.next = head;

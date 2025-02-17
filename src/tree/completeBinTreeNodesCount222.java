@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class completeBinTreeNodesCount222 {
+    //时间复杂度为logn 的平方， 依旧小于n，
     public int countNodes(TreeNode root) {
         if (root == null) {
             return 0;

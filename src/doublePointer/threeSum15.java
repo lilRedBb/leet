@@ -24,7 +24,7 @@ public class threeSum15 {
                 // Use two pointers to find the remaining two elements
                 int left = i + 1;
                 int right = nums.length - 1;
-
+                //while循环是不断更新 后面的两个数的组合的，后面两个数的组合结束以后，第一个数，也就是i，就变到下一个，再次循环下面的while
                 while (left < right) {
                     int sum = nums[i] + nums[left] + nums[right];
 
