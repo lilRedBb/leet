@@ -8,7 +8,8 @@ public class JumpGame45 {
         int jumps = 0; // Number of jumps needed to reach the end
         int currentEnd = 0; // The farthest point that can be reached with the current number of jumps
         int farthest = 0; // The farthest point that can be reached with one more jump
-
+        //第一次的current place就是第一个位置的能去的地方
+        //在currentplace的范围内，找到这个currentplace里能带你去的最大值，成为下一个current place
         // Iterate over each index except the last one
         for (int i = 0; i < nums.length - 1; i++) {
             // Update the farthest point that can be reached

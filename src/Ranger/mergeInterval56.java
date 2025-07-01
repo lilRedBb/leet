@@ -2,6 +2,7 @@ package Ranger;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 public class mergeInterval56 {
@@ -9,7 +10,9 @@ public class mergeInterval56 {
      输出：[[1,6],[8,10],[15,18]]**/
     public int[][] merge(int[][] intervals) {
         // Sort the intervals by their start times
-        Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
+        //比较ab两个数的大小来排序，ab是什么，a是a【0】， b是b[0]
+        //Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
+        Arrays.sort(intervals, Comparator.comparingInt(a -> a[0]));
 
         List<int[]> merged = new ArrayList<>();
 
@@ -24,5 +27,7 @@ public class mergeInterval56 {
         }
 
         return merged.toArray(new int[merged.size()][]);
+        //the return type is int[][], but merged is List<int[]>, so we have to convert
+        //java在构造  int  string [][] 的时候必须要加上size的，可以是0，也可以是转化过来的collection的size
     }
 }

@@ -22,5 +22,32 @@ public class Hcitation274 {
             }
         }
         return 0;
-}
+    }
+    public int hIndexBucketSort(int[] citations) {
+        int n = citations.length;
+        int[] count = new int[n + 1];
+
+        // Step 1: Count occurrences of each citation count
+        for (int c : citations) {
+            if (c >= n) {
+                count[n]++; // Any citation ≥ n is counted in the last bucket
+            } else {
+                count[c]++;
+            }
+        }
+
+        // Step 2: Accumulate counts from right to left
+        int total = 0;
+        for (int i = n; i >= 0; i--) {
+            total += count[i]; // Sum up countsx向后累加，
+            //假如已经有大于n个引用数量>n的论文，那么你的答案就是n啊，
+            //因为再往下走，n只会越来越小
+            if (total >= i) {  // First time total >= index
+                return i;
+            }
+        }
+
+        return 0;
+    }
+
 }

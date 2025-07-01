@@ -2,10 +2,11 @@ package stack;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.Stack;
 
 public class isValidKuohao20 {
     public boolean isValid(String s) {
-        Deque<Character> stack = new ArrayDeque<>();
+        Stack<Character> stack = new Stack<>();
 
         for (char c : s.toCharArray()) {
             // Push closing brackets corresponding to opening brackets onto the stack

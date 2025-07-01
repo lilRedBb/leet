@@ -23,11 +23,11 @@ public class GasAndcost134 {
         return total >= 0 ? start : -1;
     }
 
-//    public static void main(String[] args) {
-//        Solution solution = new Solution();
-//        int[] gas = {1, 2, 3, 4, 5};
-//        int[] cost = {3, 4, 5, 1, 2};
-//        int start = solution.canCompleteCircuit(gas, cost);
-//        System.out.println("Starting gas station index: " + start); // Output: 3
-//    }
+    public static void main(String[] args) {
+        GasAndcost134 solution = new GasAndcost134();
+        int[] gas = {1, 2, 3, 4, 5};
+        int[] cost = {3, 4, 5, 1, 2};
+        int start = solution.canCompleteCircuit(gas, cost);
+        System.out.println("Starting gas station index: " + start); // Output: 3
+    }
 }
