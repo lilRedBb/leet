@@ -39,6 +39,95 @@ public class gameOfLife289 {
             }
         }
     }
+
+
+    public void gameOfLife2(int[][] board) {
+        int m = board.length, n = board[0].length;
+        int[][] copy = new int[m][n];
+
+        // Make a copy
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                copy[i][j] = board[i][j];
+            }
+        }
+
+        // Compute next state
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                int liveNeighbors = countLiveNeighbors(copy, i, j);
+
+                if (copy[i][j] == 1) {
+                    if (liveNeighbors < 2 || liveNeighbors > 3) {
+                        board[i][j] = 0; // dies
+                    }
+                } else {
+                    if (liveNeighbors == 3) {
+                        board[i][j] = 1; // becomes alive
+                    }
+                }
+            }
+        }
+    }
+
+    private int countLiveNeighbors(int[][] board, int row, int col) {
+        int m = board.length, n = board[0].length;
+        int count = 0;
+        for (int i = row - 1; i <= row + 1; i++) {
+            for (int j = col - 1; j <= col + 1; j++) {
+                if (i == row && j == col) continue;
+                if (i >= 0 && i < m && j >= 0 && j < n) {
+                    count += board[i][j];
+                }
+            }
+        }
+        return count;
+    }
+
+
+    public void gameOfLife3(int[][] board) {
+        int m = board.length, n = board[0].length;
+
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                int liveNeighbors = countLiveNeighbors2(board, i, j);
+
+                if (board[i][j] == 1) {
+                    if (liveNeighbors < 2 || liveNeighbors > 3) {
+                        board[i][j] = -1; // live → dead
+                    }
+                } else {
+                    if (liveNeighbors == 3) {
+                        board[i][j] = 2; // dead → live
+                    }
+                }
+            }
+        }
+
+        // Normalize
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (board[i][j] > 0) board[i][j] = 1;
+                else board[i][j] = 0;
+            }
+        }
+    }
+
+    private int countLiveNeighbors2(int[][] board, int row, int col) {
+        int m = board.length, n = board[0].length;
+        int count = 0;
+        for (int i = row - 1; i <= row + 1; i++) {
+            for (int j = col - 1; j <= col + 1; j++) {
+                if (i == row && j == col) continue;
+                if (i >= 0 && i < m && j >= 0 && j < n) {
+                    if (board[i][j] == 1 || board[i][j] == -1) {
+                        count++;
+                    }
+                }
+            }
+        }
+        return count;
+    }
 }
 
 /**Current State Check:

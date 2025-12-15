@@ -16,7 +16,7 @@ public class partritionNode86 {
         while (head != null) {
             if (head.val < x) {
                 before.next = head;
-                before = head;
+                before = head; //因为before后面是没东西的，把before.next设为head后，再用before=head就是before=before.next了
             } else {
                 after.next = head;
                 after = head;

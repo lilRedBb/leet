@@ -5,7 +5,8 @@ public class sodukuValid36 {
     //如果是valid的数独，那么每row必须不能有重复的1-9
     //每col必须不能有重复
     //每个3*3的小单位方块，不能偶重复
-    //(r / 3) * 3 + (c / 3); 这个刚好能通过每个小格子的横纵坐标，计算出它在的小单位方块是第几个（0-8）
+    //(r / 3) * 3 + (c / 3); 这个刚好可以计算出这个小格子，所在的3X3方块，是9个3X3中的第几个
+    //boolean[][] boxes，用上面的数定位到一个array，这个array用来记录排名在这里的3x3都有些啥数字存在了
     public boolean isValidSudoku(char[][] board) {
         // Arrays to keep track of the presence of numbers in rows, columns, and sub-boxes
         boolean[][] rows = new boolean[9][9];

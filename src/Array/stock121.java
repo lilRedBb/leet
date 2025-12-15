@@ -2,20 +2,31 @@ package Array;
 
 public class stock121 {
     public int maxProfit(int[] prices) {
-        int sellOne = 0; // Maximum profit after selling one stock
-        int holdOne = Integer.MIN_VALUE; // Maximum profit after buying one stock
 
-        for (int price : prices) {
-            sellOne = Math.max(sellOne, holdOne + price); // Update sellOne with the best profit after selling today
-            holdOne = Math.max(holdOne, -price); // Update holdOne with the best profit after buying today
-            //当hold+price盈利更多的时候，你会选择在今天卖出
-            //于是下面的（holdone,-price）这里，肯定不会选-price，因为今天是卖出了，没有以price价格买入
-            //假设列表是【12345】，那么最好的安排就是买1，hold到5的时候卖出，中间不动，所以中的的holdone变量一直保持为-1
-            //但是sellone是一直变化的，
+
+            if (prices == null || prices.length == 0) return 0;
+
+            int minPrice = prices[0];
+            int maxProfit = 0;
+
+            for (int i = 1; i < prices.length; i++) {
+                // update min price
+                if (prices[i] < minPrice) {
+                    minPrice = prices[i];
+                } else {
+                    // calculate profit if sold today
+                    int profit = prices[i] - minPrice;
+                    if (profit > maxProfit) {
+                        maxProfit = profit;
+                    }
+                }
+            }
+
+            return maxProfit;
         }
 
-        return sellOne; // The maximum profit after one transaction
-    }
+
+
 
     public static void main(String[] args) {
         stock121 aa = new stock121();

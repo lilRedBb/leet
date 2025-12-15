@@ -22,7 +22,7 @@ public class permutation567 {
             // Slide: remove the left char, add the next right char
             if (i + s1.length() < s2.length()) {
                 count2[s2.charAt(i) - 'a']--;
-                count2[s2.charAt(i + s1.length()) - 'a']++;
+                count2[s2.charAt( s1.length()+i)- 'a']++;
             }
         }
 

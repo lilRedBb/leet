@@ -4,19 +4,20 @@ package linkedList;
 import java.util.HashMap;
 //deepcopy一个链表，这个链表还有一个random属性，指向Null或者链表中的其他node
 
-class Node {
-    int val;
-    Node next;
-    Node random;
 
-    public Node(int val) {
-        this.val = val;
-        this.next = null;
-        this.random = null;
-    }
-}
 
 public class randomListCopy138 {
+    class Node {
+        int val;
+        Node next;
+        Node random;
+
+        public Node(int val) {
+            this.val = val;
+            this.next = null;
+            this.random = null;
+        }
+    }
     public Node copyRandomList1(Node head) {
         if (head == null) {
             return null;

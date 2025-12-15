@@ -1,5 +1,7 @@
 package Matrix;
 
+import java.util.Arrays;
+
 public class matrixTozero73 {
     //矩阵中如果有一个0，那么它所在的行和列都要变0
     //首先先看一下第一行， 第一列有没有存在0，如果有，就先用一个boolean记录，最后用
@@ -59,4 +61,54 @@ public class matrixTozero73 {
             }
         }
     }
+
+
+    public static void printMatrix ( int[][] matrix){
+        for (int[] row : matrix) {
+            System.out.println(Arrays.toString(row));
+        }
+    }
+    public static boolean equalMatrices(int[][] a, int[][] b) {
+        if (a.length != b.length || a[0].length != b[0].length) return false;
+        for (int i = 0; i < a.length; ++i) {
+            for (int j = 0; j < a[0].length; ++j) {
+                if (a[i][j] != b[i][j]) return false;
+            }
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+        int[][] matrix = {
+                {1, 1, 1},
+                {1, 0, 1},
+                {1, 1, 1}
+        };
+
+        int[][] expected = {
+                {1, 0, 1},
+                {0, 0, 0},
+                {1, 0, 1}
+        };
+
+        System.out.println("Original matrix:");
+        printMatrix(matrix);
+
+        matrixTozero73 solver = new matrixTozero73();
+        solver.setZeroes(matrix);
+
+        System.out.println("\nMatrix after setZeroes:");
+        printMatrix(matrix);
+
+        if (equalMatrices(matrix, expected)) {
+            System.out.println("\n✅ Test passed!");
+        } else {
+            System.out.println("\n❌ Test failed!");
+        }
+    }
+
+
+
+
+
 }

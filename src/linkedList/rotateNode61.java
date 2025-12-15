@@ -9,6 +9,7 @@ public class rotateNode61 {
 
         int length = 1;
         ListNode tail = head;
+
         while (tail.next != null) {
             tail = tail.next;
             length++;

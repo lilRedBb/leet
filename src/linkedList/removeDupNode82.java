@@ -1,5 +1,8 @@
 package linkedList;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class removeDupNode82 {
     //删除有序链表中的重复
     public ListNode deleteDuplicates(ListNode head) {
@@ -28,5 +31,24 @@ public class removeDupNode82 {
             }
         }
         return dummy.next;
+    }
+
+    public ListNode removeDuplicates(ListNode head) {
+        if (head == null) return null;
+
+        Set<Integer> seen = new HashSet<>();
+        seen.add(head.val);
+
+        ListNode curr = head;
+
+        while (curr.next != null) {
+            if (seen.contains(curr.next.val)) {
+                curr.next = curr.next.next; // remove duplicate
+            } else {
+                seen.add(curr.next.val);
+                curr = curr.next;
+            }
+        }
+        return head;
     }
 }

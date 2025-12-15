@@ -2,6 +2,7 @@ package tree;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Stack;
 
 public class formTreefromINPo106 {
     //从中，后序的数组里得出一个树
@@ -47,6 +48,40 @@ public class formTreefromINPo106 {
         root.right = helper(index + 1, inRight);
         // build left subtree
         root.left = helper(inLeft, index - 1);
+
+        return root;
+    }
+
+    public TreeNode buildTreeWhile(int[] inorder, int[] postorder) {
+        if (postorder.length == 0) return null;
+
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode root = new TreeNode(postorder[postorder.length - 1]);
+        stack.push(root);
+
+        int inorderIndex = inorder.length - 1;
+
+        // Traverse postorder from right to left (excluding the root which we already processed)
+        for (int i = postorder.length - 2; i >= 0; i--) {
+            TreeNode curr = new TreeNode(postorder[i]);
+            TreeNode parent = null;
+
+            // Find the correct parent for current node
+            while (!stack.isEmpty() && stack.peek().value == inorder[inorderIndex]) {
+                parent = stack.pop();
+                inorderIndex--;
+            }
+
+            if (parent != null) {
+                // Current node is the left child
+                parent.left = curr;
+            } else {
+                // Current node is the right child
+                stack.peek().right = curr;
+            }
+
+            stack.push(curr);
+        }
 
         return root;
     }

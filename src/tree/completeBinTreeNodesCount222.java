@@ -28,6 +28,7 @@ public class completeBinTreeNodesCount222 {
         // If the leftDepth equals rightDepth, the tree is perfect
         if (leftDepth == rightDepth) {
             return (1 << leftDepth) - 1; // 2^depth - 1
+            //return (int) Math.pow(2, leftDepth) - 1;
         }
 
         // If not, recursively count the nodes in left and right subtrees

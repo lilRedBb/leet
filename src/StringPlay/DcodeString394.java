@@ -1,58 +1,77 @@
 package StringPlay;
 import java.util.*;
 
-//input s = "3[a]2[bc]"
-//output "aaabcbc"
-// in    3[a2[c]]
-//accaccacc
+// 3[a2[b]] abbabbabb
+//2a2b   aabb
 
 public class DcodeString394 {
 
-
-
     public static String decodeString(String s) {
-        Stack<Integer> repeatCountStack = new Stack<>();
-        Stack<StringBuilder> previousStringStack = new Stack<>();
-        StringBuilder substringToRepeat = new StringBuilder();
-        int repeatCount = 0;
+        // Stack to store multipliers (how many times to repeat)
+        Stack<Integer> multiplierStack = new Stack<>();
+
+        // Stack to store the string built BEFORE entering a bracket pair
+        Stack<StringBuilder> stringBeforeBracketStack = new Stack<>();
+
+        // The string we're currently building at this level
+        StringBuilder currentString = new StringBuilder();
+
+        // Accumulator for multi-digit numbers (e.g., "12" in "12[abc]")
+        int currentMultiplier = 0;
 
         for (char ch : s.toCharArray()) {
             if (Character.isDigit(ch)) {
-                // Convert multi-digit number (e.g., "12[abc]" should extract 12)
-                repeatCount = repeatCount * 10 + (ch - '0');
+                // Build multi-digit number: "12[abc]" → accumulate 1, then 12
+                currentMultiplier = currentMultiplier * 10 + (ch - '0');
+
             } else if (ch == '[') {
-                // Push current repeat count & previous string onto stacks
-                repeatCountStack.push(repeatCount);
-                previousStringStack.push(substringToRepeat);
+                // We're entering a new nested level
+                // Save current context (multiplier and string so far) to stacks
+                multiplierStack.push(currentMultiplier);
+                stringBeforeBracketStack.push(currentString);
 
-                // Reset for the new substring inside brackets
-                substringToRepeat = new StringBuilder();
-                repeatCount = 0;
+                // Start fresh for the new bracketed section
+                currentString = new StringBuilder();
+                currentMultiplier = 0;
+
             } else if (ch == ']') {
-                // Get stored repeat count and previous string
-                //
-                int times = repeatCountStack.pop();
-                StringBuilder previousString = previousStringStack.pop();
+                // We're exiting a bracket - time to multiply and combine
 
-                // Append the repeated substring to the previous string
-                for (int i = 0; i < times; i++) {
-                    previousString.append(substringToRepeat);
+                // Get how many times to repeat the string we just built
+                int timesToRepeat = multiplierStack.pop();
+
+                // Get the string that existed before this bracket pair
+                StringBuilder stringBeforeBracket = stringBeforeBracketStack.pop();
+
+                // Repeat current string and append to what came before
+                String stringToRepeat = currentString.toString();
+                for (int i = 0; i < timesToRepeat; i++) {
+                    stringBeforeBracket.append(stringToRepeat);
                 }
 
-                // Update substringToRepeat with new built string
-                substringToRepeat = previousString;
+                // The combined result becomes our new current string
+                currentString = stringBeforeBracket;
+
             } else {
-                // Append normal characters to the current substring being built
-                substringToRepeat.append(ch);
+                // Regular letter - just add to current string
+                currentString.append(ch);
             }
         }
 
-        return substringToRepeat.toString();
+        return currentString.toString();
     }
 
     public static void main(String[] args) {
-        String input = "3[a2[c]]";
-        System.out.println(decodeString(input)); // Output: "accaccacc"
-    }
+        // Test cases with step-by-step explanation
+        System.out.println("Input: '3[a2[c]]'");
+        System.out.println("Process: 3[a2[c]] → 3[acc] → accaccacc");
+        System.out.println("Output: " + decodeString("3[a2[c]]")); // "accaccacc"
 
+        System.out.println("\nInput: '3[a]2[bc]'");
+        System.out.println("Process: 3[a] → aaa, then 2[bc] → bcbc → aaabcbc");
+        System.out.println("Output: " + decodeString("3[a]2[bc]")); // "aaabcbc"
+
+        System.out.println("\nInput: '2[abc]3[cd]ef'");
+        System.out.println("Output: " + decodeString("2[abc]3[cd]ef")); // "abcabccdcdcdef"
+    }
 }

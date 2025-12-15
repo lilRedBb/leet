@@ -37,7 +37,7 @@ public class spiral180degree48 {
             }
         }
 
-        // Reflect the matrix horizontally
+        // Reflect the matrix vertically
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n / 2; j++) {
                 int temp = matrix[i][j];

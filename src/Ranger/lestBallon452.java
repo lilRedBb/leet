@@ -1,6 +1,7 @@
 package Ranger;
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 public class lestBallon452 {
     /**有一些球形气球贴在一堵用 XY 平面表示的墙面上。墙面上的气球记录在整数数组 points ，其中points[i] = [xstart, xend] 表示水平直径在 xstart 和 xend之间的气球。你不知道气球的确切 y 坐标。
@@ -21,8 +22,8 @@ public class lestBallon452 {
         if (points.length == 0) return 0;
 
         // Sort the intervals by the end points
-        Arrays.sort(points, (a, b) -> Integer.compare(a[1], b[1]));
-
+       //Arrays.sort(points, (a, b) -> Integer.compare(a[1], b[1]));
+        Arrays.sort(points, Comparator.comparingInt(a -> a[1]));
         int arrows = 1;
         int arrowPosition = points[0][1];
 

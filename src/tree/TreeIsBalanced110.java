@@ -28,22 +28,30 @@ public class TreeIsBalanced110 {
         return Math.max(leftHeight, rightHeight) + 1; // Return height if balanced
     }
 
-    public boolean isBalanced2(TreeNode root) {
-        if (root == null) return true; // A null tree is balanced
 
-        int leftHeight = height(root.left);
-        int rightHeight = height(root.right);
+}
 
-        // Check if current node is balanced and recursively check left and right subtrees
-        return Math.abs(leftHeight - rightHeight) <= 1
-                && isBalanced2(root.left)
-                && isBalanced2(root.right);
+public class TreeIsBalanced110 {
+    private boolean balanced = true; // Track balance status
+
+    public boolean isBalanced(TreeNode root) {
+        balanced = true; // Reset for each call
+        checkHeight(root);
+        return balanced;
     }
 
-    private int height(TreeNode node) {
-        if (node == null) return 0; // Base case: height of null is 0
+    private int checkHeight(TreeNode node) {
+        if (node == null || !balanced) { // Stop if already unbalanced
+            return 0;
+        }
 
-        // Height of a node is 1 + maximum of left height and right height
-        return 1 + Math.max(height(node.left), height(node.right));
+        int leftHeight = checkHeight(node.left);
+        int rightHeight = checkHeight(node.right);
+
+        if (Math.abs(leftHeight - rightHeight) > 1) {
+            balanced = false;
+        }
+
+        return Math.max(leftHeight, rightHeight) + 1;
     }
 }

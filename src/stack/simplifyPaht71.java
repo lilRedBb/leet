@@ -1,5 +1,6 @@
 package stack;
 
+import java.util.List;
 import java.util.Stack;
 
 public class simplifyPaht71 {
@@ -35,5 +36,14 @@ public class simplifyPaht71 {
 
         // Join the stack elements to form the simplified path，新出来的STRING会用/来分隔文件命名
         return "/" + String.join("/", stack);
+    }
+
+    public static void main(String[] args) {
+        String s = "/home//foo/";
+        String[] s1 = s.split("/");
+        System.out.println(s1.length);
+        for (String ele:s1){
+            System.out.println(ele);
+        }
     }
 }

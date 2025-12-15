@@ -2,6 +2,9 @@ package Array;
 
 public class longestPrefix14 {
     //substring(0,length)， 就是去除最后一个字符的意思，不断的去除最后一个字符，直到相同，或者str变成empty
+    //Input: strs = ["flower","flow","flight"]
+    //Output: "fl"
+
     public String longestCommonPrefix(String[] strs) {
         if (strs == null || strs.length == 0) {
             return "";
